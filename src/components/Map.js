@@ -17,9 +17,8 @@ class Map extends React.Component {
       generation: 0
     };
     this.state.map = this.state.mapService.initialMap();
+
     this.toggleCell = this.toggleCell.bind(this);
-    this.start = this.start.bind(this);
-    this.stop = this.stop.bind(this);
     this.clear = this.clear.bind(this);
     this.tick = this.tick.bind(this);
   }
@@ -33,18 +32,15 @@ class Map extends React.Component {
     })
   }
 
-  start(){
+  togglePlaying() {
     this.setState(state => {
-      state.tickInterval = setInterval(this.tick, tickTime);
-      state.playing = true;
-      return state;
-    });
-  }
-  stop(){
-    this.setState(state => {
-      clearInterval(state.tickInterval);
-      state.tickInterval = {};
-      state.playing = false;
+      if (state.playing) {
+        clearInterval(state.tickInterval);
+        state.tickInterval = {};
+      } else {
+        state.tickInterval = setInterval(this.tick, tickTime);
+      }
+      state.playing = !state.playing;
       return state;
     });
   }
@@ -80,7 +76,7 @@ class Map extends React.Component {
       <div className="container">
         <div className="controls">
           <span>Generation: {this.state.generation}</span>
-          <Button text={ this.state.playing ? 'Stop' : 'Start'} callback={ this.state.playing ? this.stop : this.start } />
+          <Button text={ this.state.playing ? 'Stop' : 'Start'} callback={ () => this.togglePlaying() } />
           <Button text="Clear" callback={ this.clear } disabled={this.state.playing} />
         </div>
         <div className="map-container">
