@@ -21,25 +21,3 @@ code {
 .row {
   height: 14px;
 }
-
-.cell {
-  display: inline-block;
-  margin: 2px;
-  width: 10px;
-  height: 10px;
-  border: 1px solid #666;
-  border-radius: 10px;
-  background-color: #fff;
-  cursor: pointer;
-}
-
-.cell.alive { background-color: #007FE5; }
-
-.cell.age-1 { background-color: #007FE5; }
-.cell.age-2 { background-color: #1B76C4; }
-.cell.age-3 { background-color: #366EA3; }
-.cell.age-4 { background-color: #516682; }
-.cell.age-5 { background-color: #6D5E62; }
-.cell.age-6 { background-color: #885641; }
-.cell.age-7 { background-color: #A34E20; }
-.cell.age-8 { background-color: #BF4600; }
